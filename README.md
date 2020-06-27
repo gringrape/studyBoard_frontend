@@ -1,1 +1,0 @@
-# studyBoard_frontend

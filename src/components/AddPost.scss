@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+.editor-container {
+  width: 80%;
+  min-width: 55rem;
+  margin: 5rem auto;
+  position: relative;
+}
+
+.ql-container.ql-snow {
+  border: none;
+}
+
+.ql-toolbar.ql-snow {
+  border: none;
+  background-color: lighten(gray, 45%);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.ql-editor {
+  font-family: 'Noto Sans KR', sans-serif;
+  height: 60rem;
+  max-width: 80rem;
+  font-size: 1.8rem;
+  color: lighten(black, 20%);
+  font-weight: 300;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  padding-top: 4rem;
+}
+
+.title {
+  display: block;
+  color: lighten(black, 20%);
+  font-family: 'Noto Sans KR', sans-serif;
+  outline: none;
+  border: none;
+  font-size: 5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.tags {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  outline: none;
+  border: none;
+  margin-left: 2rem;
+}
+
+.written-tag {
+  background-color: lighten(green, 5%);
+  margin: 0 .5rem;
+  padding: .6rem;
+  border-radius: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.button__addPost {
+  padding: 1rem;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 0;
+}

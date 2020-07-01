@@ -1,29 +1,25 @@
-import React, { Suspense } from 'react';
-import routes from './router';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
+import './App.scss';
+import Main from './layout/Main.jsx';
+import Nav from './layout/Nav.jsx';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+
+const client = new ApolloClient({
+	uri: process.env.BACK_URL
+});
 
 const App = () => {
-	const navStyle = {
-		display: 'flex',
-		flexDirection: 'column'
-	};
 	return (
-		<React.Fragment>
-			<Router>
-				<div className="nav" style={navStyle}>
-					<Link to="/add">add post</Link>
-					<Link to="/list">list</Link>
-					<Link to="/1">single</Link>
-				</div>
-				<Suspense fallback={<div>loading...</div>}>
-					<Switch>
-						{routes.map(({ path, Component }, i) => (
-							<Route key={i} path={path} exact render={() => <Component />} />
-						))}
-					</Switch>
-				</Suspense>
-			</Router>
-		</React.Fragment>
+		<ApolloProvider client={client}>
+			<React.Fragment>
+				<Router history={browserHistory}>
+					<Nav />
+					<Main />
+				</Router>
+			</React.Fragment>
+		</ApolloProvider>
 	);
 };
 

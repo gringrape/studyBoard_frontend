@@ -10,6 +10,7 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = {
+  entry: ['@babel/polyfill', './src/index.js'],
   module: {
     rules: [
       {

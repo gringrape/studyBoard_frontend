@@ -1,0 +1,15 @@
+.list-container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 2rem;
+}
+
+.tag {
+  background-color: lighten(green, 5%);
+  margin: 0 .5rem;
+  padding: .6rem;
+  border-radius: 1rem;
+  color: white;
+  letter-spacing: 2px;
+}

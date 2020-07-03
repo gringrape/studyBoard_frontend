@@ -1,5 +1,5 @@
-import PostList from './components/PostList.jsx';
-import AddPost from './components/AddPost.jsx';
+import PostList from './components/postList/PostList.jsx';
+import AddPost from './components/addPost/AddPost.jsx';
 import SinglePost from './components/SinglePost.jsx';
 
 export const routes = [

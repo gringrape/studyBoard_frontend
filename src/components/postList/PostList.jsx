@@ -6,18 +6,27 @@ const PostList = () => {
 	let routeQuery = useRouteQuery();
 	const [key, setKey] = useState(0);
 	const [titleQuery, setTitleQuery] = useState('');
+	const [tag, setTag] = useState('');
 	const [mounted, setMounted] = useState(false);
-	const currentTag = routeQuery.get('tag');
+	const tagParam = routeQuery.get('tag'); 
 
-	useEffect(() => {
+	const updateList = () => {
 		if (mounted) {
 			setKey(key + 1);
 		}
-	}, [currentTag, titleQuery]);
+	}
+
+	useEffect(() => {
+		setTag(tagParam);
+		setTitleQuery('');
+		updateList();
+	}, [tagParam]);
 
 	const keyDownHandler = (e) => {
 		if (e.key === 'Enter') {
 			setTitleQuery(e.target.value);
+			setTag('');
+			updateList();
 		}
 	}
 
@@ -29,7 +38,7 @@ const PostList = () => {
 			/>
 			<DisplayPosts 
 				key={key} 
-				tag={currentTag}
+				tag={tag}
 				titleQuery={titleQuery}
 				setMounted={setMounted}
 			/>

@@ -9,6 +9,7 @@ import './PostList.scss';
 const POST_LIST = gql`
 	query GetPosts($page: Int!, $per: Int!, $tag: String, $titleQuery: String) {
 		getPosts(page: $page, per: $per, tag: $tag, titleQuery: $titleQuery) {
+			id
 			title
 			content
 			tags
@@ -29,14 +30,18 @@ const DisplayPosts = ({tag, titleQuery, setMounted}) => {
 
 	const fetchPosts = async (page, per) => {
 		const {data, error} = await callQuery({page, per, tag, titleQuery});
-		setPosts(posts.concat(data.getPosts));
+		if (data) {
+			setPosts(posts.concat(data.getPosts));	
+		}
+		// TODO: error 발생시의 대처
 	};
 
-	// component did mount
 	useEffect(() => {
+		// component did mount
 		setMounted(true);
 		fetchPosts(page, 10);
 		return () => {
+			// component will unmount
 			setMounted(false);
 		}
 	}, []);

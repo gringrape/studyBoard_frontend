@@ -29,6 +29,7 @@
     "dayjs": "^1.8.28",
     "dotenv": "^8.2.0",
     "graphql": "^15.2.0",
+    "html-react-parser": "^0.13.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-intersection-observer": "^8.26.2",

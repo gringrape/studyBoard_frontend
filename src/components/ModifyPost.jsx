@@ -1,24 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import 'react-quill/dist/quill.snow.css';
-import './AddPost.scss';
+import '../components/addPost/addPost.scss';
+import { useImperativeQuery } from '../utils/queryUtils';
+import { useParams, useHistory } from 'react-router-dom';
 
-const ADD_POST = gql`
-  mutation CreatePost($inputPost: PostInput) {
-    createPost(input: $inputPost) {
-      id
+const MODIFY_POST = gql`
+  mutation ModifyPost($modifyPostInput: ModifyPostInput) {
+    modifyPost(input: $modifyPostInput) {
+      title
+      writer
+      content
+      tags
     }
   }
 `;
 
-const AddPost = () => {
+// modify input title, content, tags
+
+const GET_POST = gql`
+  query GetPost($id: ID!) {
+    getPost(id: $id) {
+      title
+      writer
+      content
+      tags
+    }
+  }
+`;
+
+const ModifyPost = () => {
+  let { id } = useParams();
+  let history = useHistory();
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState([]);
   const [inputTagValue, setInputTagValue] = useState('');
-  const [addPost, {data}] = useMutation(ADD_POST);
+  const callQuery = useImperativeQuery(GET_POST);
+  const [ modifyPost ] = useMutation(MODIFY_POST);
+  
+  const modifyThis = async () => {
+		const {data} = await modifyPost({ variables: { modifyPostInput: { id, content: value, title, tags } } });
+		if (data) {
+      history.push('/list');
+      history.go();
+		}
+	};
+
+  const fetchPost = async () => {
+    const {data} = await callQuery({id});
+    if (data) {
+      const {content: oldContent, title: oldTitle, tags: oldTags} = data.getPost;
+      setValue(oldContent);
+      setTags(oldTags);
+      setTitle(oldTitle); 
+    }
+  }
+
+  useEffect(() => {
+    fetchPost();
+  }, []);  
 
   const handleTagInput = (e) => {
     let tagVal = e.target.value;
@@ -82,13 +125,13 @@ const AddPost = () => {
         />
         <button 
           className="button__addPost"
-          onClick={submitHandler}
+          onClick={modifyThis}
         >
-          작성하기
+          수정하기
         </button>
 			</div>
 		</div>
 	);
 };
 
-export default AddPost;
+export default ModifyPost;

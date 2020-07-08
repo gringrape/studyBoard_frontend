@@ -11,6 +11,9 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 
 module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
+  output: {
+    publicPath: '/'
+  },
   module: {
     rules: [
       {
@@ -44,6 +47,9 @@ module.exports = {
         ],
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   },
   plugins: [
     new MiniCssExtractPlugin(),

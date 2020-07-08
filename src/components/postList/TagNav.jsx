@@ -27,8 +27,9 @@ const TagNav = () => {
   return (
     <div>
       {
-        tags.map(({name, count}) => (
-        <Link 
+        tags.map(({name, count}, idx) => (
+        <Link
+          key={idx}
           to={`/list?tag=${name}`}
         >
           {name}(<span>{count}</span>)

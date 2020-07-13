@@ -33,9 +33,9 @@ const DisplayDate = (props) => {
   }
 
   return (
-    <p>
+    <React.Fragment>
       {relativeDate(props.dateString)}
-    </p>
+    </React.Fragment>
   );
 }
 

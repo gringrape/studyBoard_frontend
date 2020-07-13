@@ -51,21 +51,22 @@ const DisplayComment = ({ comment, deleteHandler, modifyHandler }) => {
 		<div
 			className="comment-container"
 			style={{
-				border: '1px solid black',
-				padding: '2rem'
+				borderBottom: '1px solid black',
+				padding: '2rem',
+				marginBottom: '4rem'
 			}}
 		>
 			{isModifying ? (
 				<React.Fragment>
-					<p>작성자: {writer}</p>
+					<p>{writer}</p>
 					<input type="text" value={newContent} onChange={modifyInputHandler} />
 					<button onClick={modifyThis}>댓글 수정</button>
 					<button onClick={() => setIsModifying(false)}>수정취소</button>
 				</React.Fragment>
 			) : (
 				<React.Fragment>
-					<p>작성자: {writer}</p>
-					<p>내용: {content}</p>
+					<p>{writer}</p>
+					<p>{content}</p>
 					<button onClick={deleteThis}>삭제하기</button>
 					<button onClick={() => setIsModifying(true)}>수정하기</button>
 				</React.Fragment>

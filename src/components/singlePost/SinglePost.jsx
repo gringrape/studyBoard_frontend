@@ -7,6 +7,7 @@ import AddComment from './AddComment.jsx';
 import DisplayComment from './DisplayComment.jsx';
 import './SinglePost.scss';
 import DisplayContent from './DisplayContent.jsx';
+import { MdArrowForward, MdArrowBack } from 'react-icons/md';
 
 const SINGLE_POST = gql`
 	query GetSinglePost($id: ID!) {
@@ -52,14 +53,14 @@ const SinglePost = () => {
 		const { data } = await deletePost({ variables: { id } });
 		if (data) {
 			history.push('/list');
-			history.go();	
+			history.go();
 		}
 	};
 
 	const modifyPostHandler = () => {
 		history.push(`/modify/${id}`);
 		history.go();
-	}
+	};
 
 	const addCommentHandler = (comment) => {
 		setComments(comments.concat(comment));
@@ -84,6 +85,7 @@ const SinglePost = () => {
 			const { comments: got } = data.getPost;
 			setPostData(data.getPost);
 			if (got) {
+				console.log(got);
 				setComments(comments.concat(got));
 			}
 		}
@@ -95,35 +97,42 @@ const SinglePost = () => {
 	}, []);
 
 	return (
-		<React.Fragment>
-			<h1>{title}</h1>
-			<div style={{ display: 'flex' }}>
-				<button onClick={modifyPostHandler}>수정하기</button>
-				<button onClick={deletePostHandler}>삭제하기</button>
+		<div className="single-post-container">
+			<div className="single-post__title-box">
+				<h1 className="single-post__title">{title}</h1>
 			</div>
+			<div className="single-post__meta-box">
+				<p className="single-post__writer">by {writer}</p>
+				<div className="single-post__title-button-box">
+					<button className="single-post__modify" onClick={modifyPostHandler}>
+						수정하기
+					</button>
+					<button className="single-post__delete" onClick={deletePostHandler}>
+						삭제하기
+					</button>
+				</div>
+			</div>
+
 			<p>{postId}</p>
-			<p>{writer}</p>
 			<DisplayContent content={content} />
-			<p>{tags}</p>
-			<p>{at}</p>
 			<div className="siblings">
 				{prev_id ? (
-					<button onClick={() => moveToSibling(prev_id)} className="sibling prev">
-						이전글: {prev_title}
+					<button onClick={() => moveToSibling(prev_id)} className="sibling sibling--prev">
+						<MdArrowBack className="sibling__icon" /> &nbsp;&nbsp;&nbsp; {prev_title}
 					</button>
 				) : (
 					''
 				)}
 				{next_id ? (
-					<button onClick={() => moveToSibling(next_id)} className="sibling next">
-						다음글: {next_title}
+					<button onClick={() => moveToSibling(next_id)} className="sibling sibling--next">
+						{next_title} &nbsp;&nbsp;&nbsp; <MdArrowForward className="sibling-icon" />
 					</button>
 				) : (
 					''
 				)}
 			</div>
+			<h2>{comments.length} 개의 댓글이 있습니다</h2>
 			<AddComment post_id={id} addHandler={addCommentHandler} />
-			<p>{comments.length} 개의 댓글이 있습니다.</p>
 			{comments.map((comment, idx) => (
 				<DisplayComment
 					key={idx}
@@ -132,7 +141,7 @@ const SinglePost = () => {
 					modifyHandler={modifyCommentHandler}
 				/>
 			))}
-		</React.Fragment>
+		</div>
 	);
 };
 

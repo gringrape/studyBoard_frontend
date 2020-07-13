@@ -40,6 +40,7 @@
 }
 
 .tags {
+  width: 50rem;
   margin-bottom: 2rem;
   font-size: 1.8rem;
   outline: none;
@@ -48,23 +49,29 @@
 }
 
 .written-tag {
-  background-color: lighten(green, 5%);
+  background-color: lighten(#204051, 5%);
   margin: 0 .5rem;
-  padding: .6rem;
-  border-radius: 1rem;
+  padding: .6rem 1.3rem;
+  border-radius: .5rem;
   color: white;
   letter-spacing: 2px;
 }
 
 .button__addPost {
-  padding: 1rem;
-  background-color: green;
-  border: none;
-  border-radius: 5px;
+  padding: 1rem 4rem;
+  background-color: #84a9ac;
+  border: 1px solid #84a9ac;
+  border-radius: 2px;
   color: white;
   font-weight: 600;
   font-size: 2rem;
   position: fixed;
   bottom: 2rem;
-  right: 0;
+  right: 10%;
+  transition: all .4s;
+
+  &:hover {
+    background-color: white;
+    color: #84a9ac;
+  }
 }

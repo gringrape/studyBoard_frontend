@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+.nav {
+  background-color: #3b6978;
+  display: flex;
+  font-family: 'Bangers', cursive;
+  // color: darken(gray, 30%);
+  color: white;
+  letter-spacing: 2px;
+  padding: 2rem 4rem;
+  align-items: center;
+
+  &-link-container {
+    margin-left: 10%;
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+
+  &-item {
+    @media (max-width: 800px) {
+      visibility: hidden;
+    }
+
+    &:link, &:visited {
+      display: block;
+      text-decoration: none;
+      font-size: 2rem;
+      color: white;
+      transition: all .3s;
+      padding: 1rem 2rem;
+      margin: 0 .5rem;
+      border-radius: 5px;
+    }
+    
+    &:hover {
+      background-color: #204051;
+    }
+  }
+}

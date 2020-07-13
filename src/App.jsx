@@ -16,8 +16,8 @@ const App = () => {
 		<ApolloProvider client={client}>
 			<React.Fragment>
 				<Router history={browserHistory}>
-					<Nav />
-					<Main />
+					<Nav className="nav" />
+					<Main className="container" />
 				</Router>
 			</React.Fragment>
 		</ApolloProvider>

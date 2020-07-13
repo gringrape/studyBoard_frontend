@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Nav.scss';
 
 const Nav = () => {
-  const navStyle = {
-		display: 'flex',
-		flexDirection: 'column'
-	};
   return (
-    <div className="nav" style={navStyle}>
-      <Link to="/add">add post</Link>
-      <Link to="/list">list</Link>
+    <div className="nav">
+      <h1 className="nav-title">Jin.Study</h1>
+      <div className="nav-link-container">
+        <Link className="nav-item" to="/add">write</Link>
+        <Link className="nav-item" to="/list">list</Link>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import 'react-quill/dist/quill.snow.css';
 import './AddPost.scss';
+import { useHistory } from 'react-router';
 
 const ADD_POST = gql`
   mutation CreatePost($inputPost: PostInput) {
@@ -14,6 +15,7 @@ const ADD_POST = gql`
 `;
 
 const AddPost = () => {
+  let history = useHistory();
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState([]);
@@ -35,8 +37,8 @@ const AddPost = () => {
     }
   }
 
-  const submitHandler = () => {
-    addPost({variables:{
+  const submitHandler = async () => {
+    const {data} = await addPost({variables:{
       inputPost: {
         title,
         tags,
@@ -44,6 +46,10 @@ const AddPost = () => {
         writer: "Jin"
       }
     }});
+    if (data) {
+      history.push('/list');
+      history.go();
+    }
   }
 
   const titleHandler = (e) => {
@@ -68,7 +74,7 @@ const AddPost = () => {
           <input 
             className="tags" 
             type="text" 
-            placeholder="태그를 입력해주세요"
+            placeholder="태그를 입력해주세요 ( , 를 누르시면 입력됩니다)"
             onChange={handleTagInput}
             value={inputTagValue}
             onKeyDown={deleteTagHandler}

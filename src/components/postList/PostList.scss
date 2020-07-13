@@ -1,15 +1,31 @@
-.list-container {
-  margin-top: 2rem;
+.posts-container {
+  margin-top: 4rem;
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 2rem;
 }
 
-.tag {
-  background-color: lighten(green, 5%);
-  margin: 0 .5rem;
-  padding: .6rem;
-  border-radius: 1rem;
-  color: white;
-  letter-spacing: 2px;
+.search-box {
+  position: relative;
+  margin-top: 2rem;
+  margin-left: 3.5rem;
+}
+
+.search {
+  padding: 1rem;
+  padding-left: 4rem;
+  border: none;
+  outline: none;
+  border-radius: 20rem;
+  box-shadow: .5px .5px .5rem gray;
+  z-index: -1;
+  font-size: 1.6rem;
+  max-width: 22rem;
+
+  &-icon {
+    position: absolute;
+    left: 1rem;
+    top: .8rem;
+    color: darken(gray, 20%);
+  }
 }

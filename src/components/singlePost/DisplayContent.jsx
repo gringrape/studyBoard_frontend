@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import parse from 'html-react-parser';
+import './DisplayContent.scss';
 
 const DisplayContent = ({ content = '...' }) => {
-	const [ headings, setHeadings ] = useState([]);
-
-	const extractHeadings = (content) => {
-		let headings = [];
-		parse(content, {
-			replace: ({name, children}) => {
-				if (name && name.match(/^h[1-3]/) && children[0].data) {
-					headings.push(children[0].data);
-				}
-			}
-		});
-		console.log(headings); 
-	}
-
 	return (
 		<div>
-			<div>{extractHeadings(content)}</div>
+			<div>{parse(content, {
+				replace: domNode => {
+					if (domNode.name === 'img') {
+						domNode.attribs.class = 'content-img';
+						return domNode;
+					}
+				}
+			})}</div>
 		</div>
 	);
 };

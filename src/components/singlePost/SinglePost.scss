@@ -1,8 +1,76 @@
 .siblings {
   display: flex;
+  justify-content: space-between;
+  margin-top: 15rem;
+  margin-bottom: 5rem;
 }
 
 .sibling {
+  width: 45%;
   border: 1px solid black;
-  padding: .4rem 2rem;
+  padding: 2rem 0;
+  background-color: #84a9ac;
+  color: white;
+  font-weight: 600;
+  border: 1px solid #84a9ac;
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+  transition: all .3s;
+  border-radius: 2px;
+  outline: none;
+
+  &:hover {
+    background-color: white;
+    color: #84a9ac;
+  }
+
+  &__icon {
+    font-size: 2rem;
+  }
+}
+
+.single-post {
+
+  &-container {
+    max-width: 90rem;
+    margin: 5rem auto;
+    font-size: 2rem;
+    line-height: 1.7;
+    letter-spacing: 1px;
+  }
+  
+  &__title {
+    font-size: 4.2rem;
+  }
+
+  &__title-box {
+    margin-bottom: 4rem;
+  }
+
+  &__meta-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 4rem 0;
+  }
+
+  &__writer {
+    margin-left: 2rem;
+    font-weight: 800;
+  }
+
+  &__delete, &__modify {
+    margin-right: 2rem;
+    padding: 1rem 2rem;
+    border: none;
+    background: #ffffff;
+    letter-spacing: 1px;
+    font-size: 1.6rem;
+    color: gray;
+    transition: all .7s ease;
+    outline: none;
+ 
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

@@ -1,49 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-.post {
+.postBox {
   max-width: 80rem;
 
   &:not(:first-child) {
     padding-top: 5rem;
   }
   padding-bottom: 5rem;
+}
 
-  &__title-box {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.3rem;
+.postTag {
+  &Box {
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
   }
-  
-  &__tag {
-    &-box {
-      &:not(:first-child) {
-        margin-left: 1rem;
-      }
-    }
 
-    &:hover {
-      color: #fab457;
-    }
-    
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: #84a9ac;
+  &:hover {
+    color: #fab457;
+  }
+
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #84a9ac;
+  text-decoration: none;
+}
+
+.postHeading {
+  &:link, &:visited {
+    color: darken(gray, 30%);
     text-decoration: none;
   }
-
-  &__title {
-    &:link, &:visited {
-      color: darken(gray, 30%);
-      text-decoration: none;
-    }
-  }
 }
 
-.post__btn {
+.postHeadingBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.3rem;
+}
+
+.postButton {
   margin-top: 3rem;
-}
-
-.btn {
   font-family: 'Do Hyeon', sans-serif;
   padding: 1rem 5rem;
   font-weight: 900;

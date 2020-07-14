@@ -2,7 +2,7 @@ import React from 'react';
 import DisplayDate from './DisplayDate.jsx';
 import { Link } from 'react-router-dom';
 import { MdSchedule, MdDateRange } from 'react-icons/md';
-import './DisplayPost.scss';
+import { postButton, postHeadingBox, postHeading, postTag, postTagBox, postBox } from './DisplayPost.module.scss';
 
 // content 에서 text 뽑아내기
 const getText = (content) => {
@@ -25,20 +25,20 @@ const calculateReadingTime = (content) => {
 const PostItem = (props) => {
 	const { id, title, content, tags, at } = props.data;
 	return (
-		<div className="post">
-			<div className="post__tag-box">
+		<div className={postBox}>
+			<div className={postTagBox}>
 				{tags.map((tag, i) => (
 					<span key={i} className="post__tag-box" >
-						<Link className="post__tag" to={`/list?tag=${tag}`}>
+						<Link className={postTag} to={`/list?tag=${tag}`}>
 						#{tag}
 				</Link>
 						
 					</span>
 				))}
 			</div>
-			<div className="post__title-box">
+			<div className={postHeadingBox}>
 				<h1>
-					<Link className="post__title" to={`/posts/${id}`}>
+					<Link className={postHeading} to={`/posts/${id}`}>
 						{title}
 					</Link>
 				</h1>
@@ -50,7 +50,7 @@ const PostItem = (props) => {
 				<MdSchedule style={{ color: 'lightblue' }} /> {calculateReadingTime(content)} min read{' '}
 			</p>
 			<Link className="post__title" to={`/posts/${id}`}>
-				<button className="btn post__btn">READ MORE</button>
+				<button className={postButton}>READ MORE</button>
 			</Link>
 		</div>
 	);

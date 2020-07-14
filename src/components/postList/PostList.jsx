@@ -3,7 +3,7 @@ import { useRouteQuery } from '../../utils/routerUtils';
 import DisplayPosts from './DisplayPosts.jsx';
 import { MdSearch } from 'react-icons/md';
 import TagNav from './TagNav.jsx';
-import './PostList.scss';
+import {container, search, searchBox, searchIcon} from './PostList.module.scss';
 
 const PostList = () => {
 	let routeQuery = useRouteQuery();
@@ -37,11 +37,11 @@ const PostList = () => {
 	};
 
 	return (
-		<div className="posts-container">
+		<div className={container}>
 			<div>
-				<div className="search-box">
-					<MdSearch className="search-icon" size="2.5rem" />
-					<input className="search" type="text" placeholder="제목을 검색하세요" onKeyDown={keyDownHandler} />
+				<div className={searchBox}>
+					<MdSearch className={searchIcon} size="2.5rem" />
+					<input className={search} type="text" placeholder="제목을 검색하세요" onKeyDown={keyDownHandler} />
 				</div>
 				<TagNav />
 			</div>

@@ -5,6 +5,13 @@ import { useMutation } from '@apollo/react-hooks';
 import 'react-quill/dist/quill.snow.css';
 import './AddPost.scss';
 import { useHistory } from 'react-router';
+import {
+  container,
+  heading,
+  tagInput,
+  writtenTag,
+  addButton
+} from './AddPost.module.scss';
 
 const ADD_POST = gql`
   mutation CreatePost($inputPost: PostInput) {
@@ -59,9 +66,9 @@ const AddPost = () => {
 
 	return (
 		<div>
-			<div className="editor-container">
+			<div className={container}>
         <input 
-          className="title"
+          className={heading}
           type="text" 
           placeholder="제목:" 
           value={title} 
@@ -69,10 +76,10 @@ const AddPost = () => {
         />
         <div>
           {
-            tags.map((tag, idx) => <span key={idx} className="written-tag">{tag}</span>)
+            tags.map((tag, idx) => <span key={idx} className={writtenTag}>{tag}</span>)
           }
           <input 
-            className="tags" 
+            className={tagInput}
             type="text" 
             placeholder="태그를 입력해주세요 ( , 를 누르시면 입력됩니다)"
             onChange={handleTagInput}
@@ -87,7 +94,7 @@ const AddPost = () => {
           onChange={setValue} 
         />
         <button 
-          className="button__addPost"
+          className={addButton}
           onClick={submitHandler}
         >
           작성하기

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import './AddComment.scss';
+import { commentInput } from './AddComment.module.scss';
 
 const ADD_COMMENT = gql`
 	mutation AddComment($commentInput: CommentInput) {
@@ -28,8 +28,8 @@ const AddComment = ({ post_id, addHandler }) => {
 					}
 				}
 			});
-      addHandler(data.addComment);
-      setContent('');
+			addHandler(data.addComment);
+			setContent('');
 		}
 	};
 
@@ -39,8 +39,13 @@ const AddComment = ({ post_id, addHandler }) => {
 
 	return (
 		<div>
-			<textarea className="comment-input" placeholder="댓글을 입력하세요"
-			onKeyDown={keyDownHanlder} onChange={changeHandler} value={content} ></textarea>
+			<textarea
+				className={commentInput}
+				placeholder="댓글을 입력하세요"
+				onKeyDown={keyDownHanlder}
+				onChange={changeHandler}
+				value={content}
+			/>
 		</div>
 	);
 };

@@ -5,9 +5,20 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import AddComment from './AddComment.jsx';
 import DisplayComment from './DisplayComment.jsx';
-import './SinglePost.scss';
 import DisplayContent from './DisplayContent.jsx';
 import { MdArrowForward, MdArrowBack } from 'react-icons/md';
+import {
+	sibling,
+	siblings,
+	siblingIcon,
+	container,
+	heading,
+	headingBox,
+	deleteButton,
+	modifyButton,
+	secondBox,
+	writerBox
+} from './SinglePost.module.scss';
 
 const SINGLE_POST = gql`
 	query GetSinglePost($id: ID!) {
@@ -97,17 +108,17 @@ const SinglePost = () => {
 	}, []);
 
 	return (
-		<div className="single-post-container">
-			<div className="single-post__title-box">
-				<h1 className="single-post__title">{title}</h1>
+		<div className={container}>
+			<div className={headingBox}>
+				<h1 className={heading}>{title}</h1>
 			</div>
-			<div className="single-post__meta-box">
-				<p className="single-post__writer">by {writer}</p>
+			<div className={secondBox}>
+				<p className={writerBox}>by {writer}</p>
 				<div className="single-post__title-button-box">
-					<button className="single-post__modify" onClick={modifyPostHandler}>
+					<button className={modifyButton} onClick={modifyPostHandler}>
 						수정하기
 					</button>
-					<button className="single-post__delete" onClick={deletePostHandler}>
+					<button className={deleteButton} onClick={deletePostHandler}>
 						삭제하기
 					</button>
 				</div>
@@ -115,17 +126,17 @@ const SinglePost = () => {
 
 			<p>{postId}</p>
 			<DisplayContent content={content} />
-			<div className="siblings">
+			<div className={siblings}>
 				{prev_id ? (
-					<button onClick={() => moveToSibling(prev_id)} className="sibling sibling--prev">
-						<MdArrowBack className="sibling__icon" /> &nbsp;&nbsp;&nbsp; {prev_title}
+					<button onClick={() => moveToSibling(prev_id)} className={sibling}>
+						<MdArrowBack className={siblingIcon} /> &nbsp;&nbsp;&nbsp; {prev_title}
 					</button>
 				) : (
 					''
 				)}
 				{next_id ? (
-					<button onClick={() => moveToSibling(next_id)} className="sibling sibling--next">
-						{next_title} &nbsp;&nbsp;&nbsp; <MdArrowForward className="sibling-icon" />
+					<button onClick={() => moveToSibling(next_id)} className={sibling}>
+						{next_title} &nbsp;&nbsp;&nbsp; <MdArrowForward className={siblingIcon} />
 					</button>
 				) : (
 					''

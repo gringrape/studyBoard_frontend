@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import DisplayPost from './DisplayPost.jsx';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-import './DisplayPosts.scss';
 
 const DisplayPosts = ({ tag, titleQuery, setMounted }) => {
 	const POST_LIST = gql`

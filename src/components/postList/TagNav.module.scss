@@ -1,8 +1,8 @@
-.tag-link-box {
+.linkBox {
   padding-left: 2rem;
 }
 
-.tag-link {
+.linkItem {
   &:link, &:visited {
     display: block;
     text-decoration: none;
@@ -13,7 +13,7 @@
   }
 }
 
-.tag-link-title {
+.linkTitle {
   margin: 4rem 0 1rem 2rem;
   text-decoration: underline;
   letter-spacing: 1px;

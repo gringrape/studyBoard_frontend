@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Link } from 'react-router-dom';
-import './TagNav.scss';
+import { linkBox, linkItem, linkTitle } from './TagNav.module.scss';
 
 const TAG_LIST = gql`
 	query {
@@ -26,10 +26,10 @@ const TagNav = () => {
 
 	const { getTags: tags } = data;
 	return (
-		<div className="tag-link-box">
-      <h2 className="tag-link-title">TAGs</h2>
+		<div className={linkBox}>
+      <h2 className={linkTitle}>TAGs</h2>
 			{tags.map(({ name, count }, idx) => (
-				<Link className="tag-link" key={idx} to={`/list?tag=${name}`}>
+				<Link className={linkItem} key={idx} to={`/list?tag=${name}`}>
 					#{name} (<span>{count}</span>)
 				</Link>
 			))}

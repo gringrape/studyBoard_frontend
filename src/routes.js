@@ -1,7 +1,7 @@
-import PostList from './components/postList/PostList.jsx';
-import AddPost from './components/addPost/AddPost.jsx';
-import SinglePost from './components/singlePost/SinglePost.jsx';
-import ModifyPost from './components/ModifyPost.jsx';
+import PostList from './components/postList/PostList';
+import AddPost from './components/addPost/AddPost';
+import SinglePost from './components/singlePost/SinglePost';
+import ModifyPost from './components/modifyPost/ModifyPost';
 
 export const routes = [
   {

@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import { useMutation } from '@apollo/react-hooks';
 import 'react-quill/dist/quill.snow.css';
-import '../components/addPost/addPost.scss';
-import { useImperativeQuery } from '../utils/queryUtils';
+import { useImperativeQuery } from '../../utils/queryUtils';
 import { useParams, useHistory } from 'react-router-dom';
-import modifyPostQuery from '../graphql/modifyPost.graphql';
-import getPostQuery from '../graphql/getPost.graphql';
+import modifyPostQuery from '../../graphql/modifyPost.graphql';
+import getPostQuery from '../../graphql/getPost.graphql';
+import {
+  container,
+  heading,
+  tagInput,
+  writtenTag,
+  modifyButton
+} from './ModifyPost.module.scss';
 
 // modify input title, content, tags
 const ModifyPost = () => {
@@ -74,9 +80,9 @@ const ModifyPost = () => {
 
 	return (
 		<div>
-			<div className="editor-container">
+			<div className={container}>
         <input 
-          className="title"
+          className={heading}
           type="text" 
           placeholder="제목:" 
           value={title} 
@@ -84,10 +90,10 @@ const ModifyPost = () => {
         />
         <div>
           {
-            tags.map((tag, idx) => <span key={idx} className="written-tag">{tag}</span>)
+            tags.map((tag, idx) => <span key={idx} className={writtenTag}>{tag}</span>)
           }
           <input 
-            className="tags" 
+            className={tagInput} 
             type="text" 
             placeholder="태그를 입력해주세요"
             onChange={handleTagInput}
@@ -102,7 +108,7 @@ const ModifyPost = () => {
           onChange={setValue} 
         />
         <button 
-          className="button__addPost"
+          className={modifyButton}
           onClick={modifyThis}
         >
           수정하기

@@ -1,0 +1,53 @@
+.container {
+  width: 80%;
+  min-width: 55rem;
+  margin: 5rem auto;
+  position: relative;
+}
+
+.heading {
+  display: block;
+  color: lighten(black, 20%);
+  outline: none;
+  border: none;
+  font-size: 5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.tagInput {
+  width: 50rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  outline: none;
+  border: none;
+  margin-left: 2rem;
+}
+
+.writtenTag {
+  background-color: lighten(#204051, 5%);
+  margin: 0 .5rem;
+  padding: .6rem 1.3rem;
+  border-radius: .5rem;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.modifyButton {
+  padding: 1rem 4rem;
+  background-color: #84a9ac;
+  border: 1px solid #84a9ac;
+  border-radius: 2px;
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 10%;
+  transition: all .4s;
+
+  &:hover {
+    background-color: white;
+    color: #84a9ac;
+  }
+}

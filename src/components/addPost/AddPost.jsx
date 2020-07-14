@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
-import { gql } from 'apollo-boost';
+import addPostQuery from '../../graphql/addPost.graphql';
 import { useMutation } from '@apollo/react-hooks';
 import 'react-quill/dist/quill.snow.css';
 import './AddPost.scss';
@@ -13,21 +13,13 @@ import {
   addButton
 } from './AddPost.module.scss';
 
-const ADD_POST = gql`
-  mutation CreatePost($inputPost: PostInput) {
-    createPost(input: $inputPost) {
-      id
-    }
-  }
-`;
-
 const AddPost = () => {
   let history = useHistory();
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState([]);
   const [inputTagValue, setInputTagValue] = useState('');
-  const [addPost, {data}] = useMutation(ADD_POST);
+  const [addPost, {data}] = useMutation(addPostQuery);
 
   const handleTagInput = (e) => {
     let tagVal = e.target.value;

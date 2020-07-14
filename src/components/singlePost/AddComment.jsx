@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { commentInput } from './AddComment.module.scss';
-
-const ADD_COMMENT = gql`
-	mutation AddComment($commentInput: CommentInput) {
-		addComment(input: $commentInput) {
-			id
-			writer
-			content
-		}
-	}
-`;
+import addCommentQuery from '../../graphql/addComment.graphql';
 
 const AddComment = ({ post_id, addHandler }) => {
-	const [ addComment ] = useMutation(ADD_COMMENT);
+	const [ addComment ] = useMutation(addCommentQuery);
 	const [ content, setContent ] = useState('');
 
 	const keyDownHanlder = async (e) => {

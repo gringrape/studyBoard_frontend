@@ -1,0 +1,7 @@
+mutation ModifyComment($input: ModifyCommentInput) {
+	modifyComment(input: $input) {
+		id
+		writer
+		content
+	}
+}

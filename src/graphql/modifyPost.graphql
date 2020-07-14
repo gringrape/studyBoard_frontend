@@ -1,0 +1,8 @@
+mutation ModifyPost($modifyPostInput: ModifyPostInput) {
+	modifyPost(input: $modifyPostInput) {
+		title
+		writer
+		content
+		tags
+	}
+}

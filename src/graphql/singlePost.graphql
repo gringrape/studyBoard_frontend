@@ -1,0 +1,19 @@
+query GetSinglePost($id: ID!) {
+	getPost(id: $id) {
+		id
+		writer
+		title
+		content
+		tags
+		at
+		prev_id
+		prev_title
+		next_id
+		next_title
+		comments {
+			id
+			writer
+			content
+		}
+	}
+}

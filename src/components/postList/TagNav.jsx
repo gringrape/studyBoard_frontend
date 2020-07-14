@@ -1,20 +1,11 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { Link } from 'react-router-dom';
 import { linkBox, linkItem, linkTitle } from './TagNav.module.scss';
-
-const TAG_LIST = gql`
-	query {
-		getTags {
-			name
-			count
-		}
-	}
-`;
+import tagListQuery from '../../graphql/tagList.graphql';
 
 const TagNav = () => {
-	const { loading, error, data } = useQuery(TAG_LIST);
+	const { loading, error, data } = useQuery(tagListQuery);
 
 	if (loading) {
 		return '';

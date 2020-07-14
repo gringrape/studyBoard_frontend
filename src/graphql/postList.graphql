@@ -1,0 +1,9 @@
+query GetPosts($offset: Int!, $limit: Int!, $tag: String, $titleQuery: String) {
+	getPosts(offset: $offset, limit: $limit, tag: $tag, titleQuery: $titleQuery) {
+		id
+		title
+		content
+		tags
+		at
+	}
+}

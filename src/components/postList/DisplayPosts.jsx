@@ -1,21 +1,9 @@
 import React, { useEffect } from 'react';
 import DisplayPost from './DisplayPost.jsx';
-import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
+import postListQuery from '../../graphql/postList.graphql';
 
 const DisplayPosts = ({ tag, titleQuery, setMounted }) => {
-	const POST_LIST = gql`
-		query GetPosts($offset: Int!, $limit: Int!, $tag: String, $titleQuery: String) {
-			getPosts(offset: $offset, limit: $limit, tag: $tag, titleQuery: $titleQuery) {
-				id
-				title
-				content
-				tags
-				at
-			}
-		}
-	`;
-
 	window.onscroll = function(ev) {
 		const scrollReachesBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
 		if (scrollReachesBottom) {
@@ -43,7 +31,7 @@ const DisplayPosts = ({ tag, titleQuery, setMounted }) => {
 		}
 	}, []);
 
-	const { loading, error, data, fetchMore } = useQuery(POST_LIST, {
+	const { loading, error, data, fetchMore } = useQuery(postListQuery, {
 		variables: {
 			offset: 0,
 			limit: 10,

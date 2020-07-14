@@ -1,29 +1,12 @@
 import React, { useState } from 'react';
-import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-
-const DELETE_COMMENT = gql`
-	mutation DeleteComment($id: String!) {
-		deleteComment(id: $id) {
-			id
-		}
-	}
-`;
-
-const MODIFY_COMMENT = gql`
-	mutation ModifyComment($input: ModifyCommentInput) {
-		modifyComment(input: $input) {
-			id
-			writer
-			content
-		}
-	}
-`;
+import deleteCommentQuery from '../../graphql/deleteComment.graphql';
+import modifyCommentQuery from '../../graphql/modifyComment.graphql';
 
 const DisplayComment = ({ comment, deleteHandler, modifyHandler }) => {
 	const { id, writer, content } = comment;
-	const [ deleteComment ] = useMutation(DELETE_COMMENT);
-	const [ modifyComment ] = useMutation(MODIFY_COMMENT);
+	const [ deleteComment ] = useMutation(deleteCommentQuery);
+	const [ modifyComment ] = useMutation(modifyCommentQuery);
 	const [ isModifying, setIsModifying ] = useState(false);
 	const [ newContent, setNewContent ] = useState(content);
 

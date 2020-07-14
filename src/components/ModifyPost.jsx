@@ -1,36 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
-import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import 'react-quill/dist/quill.snow.css';
 import '../components/addPost/addPost.scss';
 import { useImperativeQuery } from '../utils/queryUtils';
 import { useParams, useHistory } from 'react-router-dom';
-
-const MODIFY_POST = gql`
-  mutation ModifyPost($modifyPostInput: ModifyPostInput) {
-    modifyPost(input: $modifyPostInput) {
-      title
-      writer
-      content
-      tags
-    }
-  }
-`;
+import modifyPostQuery from '../graphql/modifyPost.graphql';
+import getPostQuery from '../graphql/getPost.graphql';
 
 // modify input title, content, tags
-
-const GET_POST = gql`
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
-      title
-      writer
-      content
-      tags
-    }
-  }
-`;
-
 const ModifyPost = () => {
   let { id } = useParams();
   let history = useHistory();
@@ -38,8 +16,8 @@ const ModifyPost = () => {
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState([]);
   const [inputTagValue, setInputTagValue] = useState('');
-  const callQuery = useImperativeQuery(GET_POST);
-  const [ modifyPost ] = useMutation(MODIFY_POST);
+  const callQuery = useImperativeQuery(getPostQuery);
+  const [ modifyPost ] = useMutation(modifyPostQuery);
   
   const modifyThis = async () => {
 		const {data} = await modifyPost({ variables: { modifyPostInput: { id, content: value, title, tags } } });

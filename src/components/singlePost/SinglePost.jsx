@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useImperativeQuery } from '../../utils/queryUtils';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import singlePostQuery from '../../graphql/singlePost.graphql';
+import deletePostQuery from '../../graphql/deletePost.graphql';
 import AddComment from './AddComment.jsx';
 import DisplayComment from './DisplayComment.jsx';
 import DisplayContent from './DisplayContent.jsx';
@@ -20,43 +21,13 @@ import {
 	writerBox
 } from './SinglePost.module.scss';
 
-const SINGLE_POST = gql`
-	query GetSinglePost($id: ID!) {
-		getPost(id: $id) {
-			id
-			writer
-			title
-			content
-			tags
-			at
-			prev_id
-			prev_title
-			next_id
-			next_title
-			comments {
-				id
-				writer
-				content
-			}
-		}
-	}
-`;
-
-const DELETE_POST = gql`
-	mutation DeletePost($id: String!) {
-		deletePost(id: $id) {
-			id
-		}
-	}
-`;
-
 const SinglePost = () => {
 	let { id } = useParams();
 	let history = useHistory();
-	const callQuery = useImperativeQuery(SINGLE_POST);
+	const callQuery = useImperativeQuery(singlePostQuery);
 	const [ postData, setPostData ] = useState({});
 	const [ comments, setComments ] = useState([]);
-	const [ deletePost ] = useMutation(DELETE_POST);
+	const [ deletePost ] = useMutation(deletePostQuery);
 
 	const { title, postId, writer, content, tags, at, prev_id, prev_title, next_id, next_title } = postData;
 

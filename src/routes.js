@@ -5,7 +5,7 @@ import ModifyPost from './components/modifyPost/ModifyPost';
 
 export const routes = [
   {
-    path: '/list',
+    path: ['/', '/list'],
     Component: PostList,
   },
   {

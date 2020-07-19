@@ -27,14 +27,14 @@ const PostItem = (props) => {
 	return (
 		<div className={postBox}>
 			<div className={postTagBox}>
-				{tags.map((tag, i) => (
+				{tags ? tags.map((tag, i) => (
 					<span key={i} className="post__tag-box" >
 						<Link className={postTag} to={`/list?tag=${tag}`}>
 						#{tag}
 				</Link>
 						
 					</span>
-				))}
+				)) : ''}
 			</div>
 			<div className={postHeadingBox}>
 				<h1>

@@ -19,11 +19,11 @@ const TagNav = () => {
 	return (
 		<div className={linkBox}>
       <h2 className={linkTitle}>TAGs</h2>
-			{tags.map(({ name, count }, idx) => (
+			{tags ? tags.map(({ name, count }, idx) => (
 				<Link className={linkItem} key={idx} to={`/list?tag=${name}`}>
 					#{name} (<span>{count}</span>)
 				</Link>
-			))}
+			)): ''}
 		</div>
 	);
 };

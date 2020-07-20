@@ -2,34 +2,33 @@ import React, { useEffect } from 'react';
 import DisplayPost from './DisplayPost.jsx';
 import { useQuery } from '@apollo/react-hooks';
 import postListQuery from '../../graphql/postList.graphql';
+import { useInView } from 'react-intersection-observer';
 
 const DisplayPosts = ({ tag, titleQuery, setMounted }) => {
-	window.onscroll = function(ev) {
-		const scrollReachesBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
-		if (scrollReachesBottom) {
-			fetchMore({
-				variables: {
-					offset: data.getPosts.length
-				},
-				updateQuery: (prev, { fetchMoreResult }) => {
-					console.log(prev);
-					if (!fetchMoreResult) {
-						return prev;
-					}
-					return {
-						getPosts: [ ...prev.getPosts, ...fetchMoreResult.getPosts ]
-					};
-				}
-			});
-		}
-	};
+	const [ref, inView, entry] = useInView({
+    threshold: 0,
+  });
 
 	useEffect(() => {
 		setMounted(true);
 		return () => {
 			setMounted(false);
-		}
+		};
 	}, []);
+
+	useEffect(() => {
+		if (inView) {
+			const updateQuery = (prevData, { fetchMoreResult: moreData }) => {
+				return (!moreData) 
+					? prevData
+					: ({ getPosts: [ ...prevData.getPosts, ...moreData.getPosts ]});
+			};
+			fetchMore({ 
+				variables: {offset: data.getPosts.length},
+				updateQuery
+			});
+		}
+	}, [inView]);
 
 	const { loading, error, data, fetchMore } = useQuery(postListQuery, {
 		variables: {
@@ -52,10 +51,9 @@ const DisplayPosts = ({ tag, titleQuery, setMounted }) => {
 		<div className="list-container">
 			<div>
 				{data.getPosts.map((post, i) => (
-					<React.Fragment>
-						<DisplayPost className="post-box" key={i} data={post} />
-					</React.Fragment>
+					<DisplayPost className="post-box" key={i} data={post} />
 				))}
+				<div ref={ref} style={{width: "100%", height: "5rem", backgroundColor: "white", margin: "5rem 0"}}></div>
 			</div>
 		</div>
 	);
